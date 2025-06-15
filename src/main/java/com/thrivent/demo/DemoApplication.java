@@ -1,56 +1,40 @@
 package com.thrivent.demo;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DemoApplication {
 
-	// Person class with name and age
-	static class Person {
-		private String name;
-		private int age;
-
-		// Constructor to initialize name and age
-		public Person(String name, int age) {
-			this.name = name;
-			this.age = age;
-		}
-
-		// Method to print name and age
-		public void printInfo() {
-			System.out.println("Name: " + name + ", Age: " + age);
-		}
-
-		// Method to get name
-		public String getName() {
-			return name;
-		}
-
-		// Method to get age
-		public int getAge() {
-			return age;
-		}
-
-		// Method to update name and age
-		public void update(String name, int age) {
-			this.name = name;
-			this.age = age;
-		}
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 
-		// Create a new Person object
-		Person person = new Person("John", 30);
-		// Print initial info
-		person.printInfo();
+		List<String> names = Arrays.asList("John", "Jane", "Peter", "Anna", "John");
 
-		// Update name and age
-		person.update("Jane", 25);
-		// Print updated info
-		person.printInfo();
+		// Filter names starting with 'J'
+		List<String> filteredNames = names.stream()
+				.filter(name -> name.startsWith("J"))
+				.collect(Collectors.toList());
+
+		System.out.println("Original names: " + names);
+		System.out.println("Filtered names: " + filteredNames);
+
+		// Filter out duplicates
+		List<String> distinctNames = names.stream()
+				.distinct()
+				.collect(Collectors.toList());
+
+		System.out.println("Distinct names: " + distinctNames);
+
+		// Filter names based on length
+		List<String> longNames = names.stream()
+				.filter(name -> name.length() > 3)
+				.collect(Collectors.toList());
+		System.out.println("Long names: " + longNames);
 	}
 
 }

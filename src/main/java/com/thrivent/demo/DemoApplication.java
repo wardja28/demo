@@ -22,6 +22,16 @@ public class DemoApplication {
 			System.out.println("Name: " + name + ", Age: " + age);
 		}
 
+		// Method to get name
+		public String getName() {
+			return name;
+		}
+
+		// Method to get age
+		public int getAge() {
+			return age;
+		}
+
 		// Method to update name and age
 		public void update(String name, int age) {
 			this.name = name;
